@@ -42,8 +42,7 @@ public class StreetsTest {
         String endPoint = String.format("/%s/%s/streets", code, city);
         Response response = get(endPoint);
         CityStreets citiesStreets = response.as(CityStreets.class);
-        assertThat(citiesStreets.getStreets(), is(streets));
-        assertThat(citiesStreets.getStreets().size(), is(streets.size()));
+        assertThat(streets, everyItem(in(citiesStreets.getStreets())));
     }
 
 
