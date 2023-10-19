@@ -1,6 +1,7 @@
 package com.itkhanz.tests;
 
-import com.itkhanz.api.specs.StreetsSpecBuilder;
+import com.itkhanz.api.StreetsApi;
+import com.itkhanz.specs.StreetsSpecBuilder;
 import com.itkhanz.factories.TestDataLoader;
 import com.itkhanz.models.pojos.CityStreets;
 import io.restassured.response.Response;
@@ -16,14 +17,7 @@ public class StreetsTest {
 
     @Test(dataProvider = "streetsData", dataProviderClass = TestDataLoader.class)
     public void test_streets_for_given_city_and_postcode(String code, String city, List<String> streets) {
-        String endPoint = String.format("/%s/%s/streets", code, city);
-
-        Response response = given(StreetsSpecBuilder.getRequestSpec())
-                            .when()
-                                .get(endPoint)
-                            .then()
-                                .spec(StreetsSpecBuilder.getResponseSpec())
-                                .extract().response();
+        Response response = StreetsApi.getStreetsForPostCodeAndCity(code, city);
 
         CityStreets citiesStreets = response.as(CityStreets.class);
 
@@ -33,12 +27,7 @@ public class StreetsTest {
 
     @Test
     public void test_streets_for_berlin_10409_postcode() {
-        Response response = given(StreetsSpecBuilder.getRequestSpecForBerlin())
-                            .when()
-                                .get("/{code}/{city}/streets")
-                            .then()
-                                .spec(StreetsSpecBuilder.getResponseSpec())
-                                .extract().response();
+        Response response = StreetsApi.getStreetsForBerlin();
 
         // Verify that the "Streets" element in the response is a list with a length of 29
         response.then().body("Streets", hasSize(29));
