@@ -1,7 +1,6 @@
 package com.itkhanz.tests;
 
 import com.itkhanz.api.StreetsApi;
-import com.itkhanz.specs.StreetsSpecBuilder;
 import com.itkhanz.factories.TestDataLoader;
 import com.itkhanz.models.pojos.CityStreets;
 import io.restassured.response.Response;
@@ -9,7 +8,6 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 

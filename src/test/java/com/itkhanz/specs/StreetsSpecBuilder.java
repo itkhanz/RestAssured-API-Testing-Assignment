@@ -1,7 +1,7 @@
 package com.itkhanz.specs;
 
 import com.itkhanz.constants.City;
-import com.itkhanz.constants.Globals;
+import com.itkhanz.constants.Route;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -16,7 +16,8 @@ import static org.hamcrest.Matchers.isA;
 public class StreetsSpecBuilder {
     public static RequestSpecification getRequestSpec() {
         return new RequestSpecBuilder()
-                .setBaseUri(Globals.BASE_URI)
+                .setBaseUri(Route.BASE_URI)
+                .setBasePath(Route.BASE_PATH)
                 .log(LogDetail.ALL)
                 .build()
                 ;
@@ -34,7 +35,8 @@ public class StreetsSpecBuilder {
 
     public static RequestSpecification getRequestSpecForBerlin() {
         return new RequestSpecBuilder()
-                .setBaseUri(Globals.BASE_URI)
+                .setBaseUri(Route.BASE_URI)
+                .setBasePath(Route.BASE_PATH)
                 .addPathParam("code", City.BERLIN.getPostalCode())
                 .addPathParam("city", City.BERLIN.name().toLowerCase())
                 .log(LogDetail.ALL)

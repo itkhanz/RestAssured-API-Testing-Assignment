@@ -1,6 +1,6 @@
 package com.itkhanz.specs;
 
-import com.itkhanz.constants.Globals;
+import com.itkhanz.constants.Route;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -17,7 +17,8 @@ public class CitiesSpecBuilder {
 
     public static RequestSpecification getRequestSpec() {
         return new RequestSpecBuilder()
-                .setBaseUri(Globals.BASE_URI)
+                .setBaseUri(Route.BASE_URI)
+                .setBasePath(Route.BASE_PATH)
                 .log(LogDetail.ALL)
                 .build()
                 ;
