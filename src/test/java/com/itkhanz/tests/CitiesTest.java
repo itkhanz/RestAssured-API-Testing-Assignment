@@ -1,5 +1,8 @@
 package com.itkhanz.tests;
 
+import com.itkhanz.constants.Globals;
+import com.itkhanz.factories.TestDataLoader;
+import com.itkhanz.models.pojos.Cities;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -24,7 +27,6 @@ public class CitiesTest {
         RestAssured.baseURI = "https://service.verivox.de/geo/latestv2/cities";
 
         RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder()
-                //.setBaseUri("https://service.verivox.de/geo/latestv2/cities")
                 .log(LogDetail.ALL);
         RestAssured.requestSpecification = requestSpecBuilder.build();
 
@@ -37,36 +39,33 @@ public class CitiesTest {
         RestAssured.responseSpecification = responseSpecBuilder.build();
     }
 
-    @Test
-    public void test_cities_for_10409_postcode() {
-        Response response = get("/10409").then().extract().response();
+    @Test(dataProvider = "citiesData", dataProviderClass = TestDataLoader.class)
+    public void test_cities_for_given_postcode(String code, List<String> cities) {
 
-        //assertThat(response.statusCode(),is(equalTo(200)));
-        assertThat(response.path("Cities[0]").toString(),equalTo("Berlin"));
+
+        Response response = get("/" + code);
+
+        //Approach 01: Parse response using JsonPath
+        //assertThat(response.jsonPath().getList("Cities"), is(cities));
+
+        //Approach 02: Deserialize response using POJO Classes
+        Cities responseCities = response.as(Cities.class);
+        assertThat(responseCities.getCities(), is(cities));
     }
 
-    @Test
-    public void test_cities_for_77716_postcode() {
-        Response response = get("/77716").then().extract().response();
-
-        // Verify that the response code is 200 (or the appropriate code for success)
-        //response.then().statusCode(200);
-
-        // Verify that the "Cities" element in the response contains all specified cities
-        response.then().body("Cities", containsInAnyOrder("Fischerbach", "Haslach", "Hofstetten"));
-    }
 
     @Test
     public void test_cities_for_invalid_postcode() {
         ResponseSpecBuilder customResponseSpecBuilder = new ResponseSpecBuilder()
                 .expectStatusCode(404)
-                .expectBody(Matchers.emptyString())
+                .expectBody(Matchers.blankOrNullString())
                 .log(LogDetail.ALL);
 
         RestAssured.responseSpecification = customResponseSpecBuilder.build();
 
         // Verify the response using the custom response specification
-        Response response = get("/22333").then().extract().response();
+        Response response = get("/" + Globals.INVALID_POSTAL_CODE);
 
+        //No need to perform assertions as these are automatically validated using ResponseSpec
     }
 }

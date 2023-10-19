@@ -1,5 +1,7 @@
 package com.itkhanz.tests;
 
+import com.itkhanz.factories.TestDataLoader;
+import com.itkhanz.models.pojos.CityStreets;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -34,6 +36,16 @@ public class StreetsTest {
                 ;
         RestAssured.responseSpecification = responseSpecBuilder.build();
     }
+
+    @Test(dataProvider = "streetsData", dataProviderClass = TestDataLoader.class)
+    public void test_streets_for_given_city_and_postcode(String code, String city, List<String> streets) {
+        String endPoint = String.format("/%s/%s/streets", code, city);
+        Response response = get(endPoint);
+        CityStreets citiesStreets = response.as(CityStreets.class);
+        assertThat(citiesStreets.getStreets(), is(streets));
+        assertThat(citiesStreets.getStreets().size(), is(streets.size()));
+    }
+
 
     @Test
     public void test_streets_for_berlin_10409_postcode() {
