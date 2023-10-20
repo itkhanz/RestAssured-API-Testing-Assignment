@@ -2,6 +2,7 @@ package com.itkhanz.specs;
 
 import com.itkhanz.constants.enums.City;
 import com.itkhanz.constants.Route;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -18,6 +19,7 @@ public class StreetsSpecBuilder {
         return new RequestSpecBuilder()
                 .setBaseUri(Route.BASE_URI)
                 .setBasePath(Route.BASE_PATH)
+                .addFilter(new AllureRestAssured())
                 .log(LogDetail.ALL)
                 .build()
                 ;
@@ -39,6 +41,7 @@ public class StreetsSpecBuilder {
                 .setBasePath(Route.BASE_PATH)
                 .addPathParam("code", City.BERLIN.getPostalCode())
                 .addPathParam("city", City.BERLIN.name().toLowerCase())
+                .addFilter(new AllureRestAssured())
                 .log(LogDetail.ALL)
                 .build()
                 ;

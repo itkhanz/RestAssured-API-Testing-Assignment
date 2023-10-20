@@ -1,6 +1,7 @@
 package com.itkhanz.specs;
 
 import com.itkhanz.constants.Route;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;
@@ -19,6 +20,7 @@ public class CitiesSpecBuilder {
         return new RequestSpecBuilder()
                 .setBaseUri(Route.BASE_URI)
                 .setBasePath(Route.BASE_PATH)
+                .addFilter(new AllureRestAssured())
                 .log(LogDetail.ALL)
                 .build()
                 ;
