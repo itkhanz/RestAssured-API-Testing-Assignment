@@ -1,7 +1,9 @@
-# API Testing with REST Assured [Java]
+# API Testing with REST Assured and Java
 
 * This project is a solution for the API Testing assignment and automates API endpoints to validate the
   response.
+* It uses data-driven testing to derive parameterized tests from JSON test data for both the test scenarios.
+* API response is validated for HTTP Status code, response body, and content type.
 
 ## Pre-requisites
 
@@ -25,6 +27,74 @@ This project is built and tested with the following dependencies:
   adapter for allure reporting
 * [Allure rest-assured](https://mvnrepository.com/artifact/io.qameta.allure/allure-rest-assured) Filter for rest-assured
   http client, that generates attachment for allure.
+
+## Project Structure
+
+```shell
+.
+└── doc/
+    ├── src/
+    │   ├── main/
+    │   │   └── resources/
+    │   │       └── log4j2.xml
+    │   └── test/
+    │       ├── java/
+    │       │   └── com/
+    │       │       └── itkhanz/
+    │       │           ├── api/
+    │       │           │   ├── CitiesApi
+    │       │           │   └── StreetsApi
+    │       │           ├── config/
+    │       │           │   └── owner/
+    │       │           │       ├── ConfigFactory
+    │       │           │       └── GeneralConfig
+    │       │           ├── constants/
+    │       │           │   ├── enums/
+    │       │           │   │   ├── City
+    │       │           │   │   └── StatusCode
+    │       │           │   ├── Globals
+    │       │           │   └── Route
+    │       │           ├── factories/
+    │       │           │   ├── FakerFactory
+    │       │           │   └── TestDataLoader
+    │       │           ├── models/
+    │       │           │   └── pojos/
+    │       │           │       ├── Cities
+    │       │           │       ├── CityStreets
+    │       │           │       └── StreetsRoot
+    │       │           ├── specs/
+    │       │           │   ├── CitiesSpecBuilder
+    │       │           │   └── StreetsSpecBuilder
+    │       │           ├── tests/
+    │       │           │   ├── CitiesTest
+    │       │           │   └── StreetsTest
+    │       │           └── utils/
+    │       │               ├── AssertionUtils
+    │       │               └── JacksonUtils
+    │       └── resources/
+    │           ├── test-data/
+    │           │   ├── cities.json
+    │           │   └── streets.json
+    │           ├── test-suites/
+    │           │   └── testng.xml
+    │           ├── allure.properties
+    │           └── general.properties
+    ├── target
+    └── pom.xml
+```
+
+## Test Scenarios
+
+### User story A – Address checks
+**AS**              A backend developer
+
+**I WANT TO**       find city and street names for a particular German postcode
+
+**SO THAT**         I can help customers select their address details more easily
+
+### Scenario 1: Find the cities for a given postcode
+
+### Scenario 2: Find the streets for a given postcode
 
 ## Running Tests
 
