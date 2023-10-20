@@ -28,7 +28,7 @@ public class CitiesSpecBuilder {
 
     public static ResponseSpecification getResponseSpec() {
         return new ResponseSpecBuilder()
-                .expectStatusCode(200)
+                //.expectStatusCode(200)
                 .expectContentType(ContentType.JSON)
                 .expectBody("Cities", isA(List.class))
                 .log(LogDetail.ALL)
@@ -38,7 +38,7 @@ public class CitiesSpecBuilder {
 
     public static ResponseSpecification getInvalidPostCodeResponseSpec() {
         return new ResponseSpecBuilder()
-                .expectStatusCode(404)
+                //.expectStatusCode(404)
                 .expectBody(Matchers.blankOrNullString())
                 .log(LogDetail.ALL)
                 .build()

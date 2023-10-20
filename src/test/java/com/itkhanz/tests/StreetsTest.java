@@ -3,17 +3,16 @@ package com.itkhanz.tests;
 import com.itkhanz.api.StreetsApi;
 import com.itkhanz.factories.TestDataLoader;
 import com.itkhanz.models.pojos.CityStreets;
+import com.itkhanz.utils.AssertionUtils;
 import io.qameta.allure.Description;
 import io.qameta.allure.Story;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 import java.util.List;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class StreetsTest {
     private static final Logger logger = LogManager.getLogger(StreetsTest.class);
@@ -25,10 +24,12 @@ public class StreetsTest {
 
         Response response = StreetsApi.getStreetsForPostCodeAndCity(code, city);
 
-        CityStreets citiesStreets = response.as(CityStreets.class);
+        CityStreets responseCitiesStreets = response.as(CityStreets.class);
 
         logger.info("Validating that all  the streets exist in returned response for code {} and city {}", code, city);
-        assertThat(streets, everyItem(in(citiesStreets.getStreets())));
+        AssertionUtils.assertStreetsResponseContain(responseCitiesStreets, streets);
+
+        //Validation of response to be always list is done in responeSpecBuilder
     }
 
 
@@ -40,6 +41,14 @@ public class StreetsTest {
 
         logger.info("Validating that the Cities Api returns 29 streets for Berlin 10409");
         // Verify that the "Streets" element in the response is a list with a length of 29
-        response.then().body("Streets", hasSize(29));
+
+        //Approach 01
+        //response.then().body("Streets", hasSize(29));
+
+        //Approach 02
+        // Extract the "Streets" using JsonPath
+        JsonPath jsonPath = response.jsonPath();
+        List<String> streets = jsonPath.getList("Streets");
+        AssertionUtils.assertTotalNumberOfStreets(streets, 29);
     }
 }

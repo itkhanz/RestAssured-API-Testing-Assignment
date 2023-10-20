@@ -1,8 +1,10 @@
 package com.itkhanz.tests;
 
 import com.itkhanz.api.CitiesApi;
+import com.itkhanz.constants.enums.StatusCode;
 import com.itkhanz.factories.TestDataLoader;
 import com.itkhanz.models.pojos.Cities;
+import com.itkhanz.utils.AssertionUtils;
 import io.qameta.allure.Description;
 import io.qameta.allure.Story;
 import io.restassured.response.Response;
@@ -11,9 +13,6 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 import java.util.List;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 
 public class CitiesTest {
     private static final Logger logger = LogManager.getLogger(StreetsTest.class);
@@ -32,7 +31,10 @@ public class CitiesTest {
         //Approach 02: Deserialize response using POJO Classes
         Cities responseCities = response.as(Cities.class);
 
-        assertThat(responseCities.getCities(), is(cities));
+        AssertionUtils.assertStatusCode(response.statusCode(), StatusCode.CODE_200);
+        AssertionUtils.assertCitiesEqual(responseCities, cities);
+
+        //Validation of response to be always list is done in responeSpecBuilder
     }
 
 
@@ -43,6 +45,8 @@ public class CitiesTest {
         // Verify the response using the custom response specification
         Response response = CitiesApi.getCitiesForInvalidPostCode();
 
-        //No need to perform assertions as these are automatically validated using ResponseSpec
+        AssertionUtils.assertStatusCode(response.statusCode(), StatusCode.CODE_404);
+
+        //Empty Response Body is pre-verified in ResponseSpecBuilder
     }
 }
