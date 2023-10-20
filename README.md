@@ -9,8 +9,8 @@
 
 This project is built and tested with the following dependencies:
 
-* JAVA JDK 17.0.2+ installed and JAVA_HOME in your classpath
-* MAVEN 3.9.2+ installed and MAVEN_HOME in your classpath
+* JAVA JDK 17+ installed and JAVA_HOME set as environment variable
+* MAVEN 3.9.2+ installed and MAVEN_HOME set as environment variable
 
 ## Libraries
 
