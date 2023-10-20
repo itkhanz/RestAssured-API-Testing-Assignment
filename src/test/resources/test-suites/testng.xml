@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="Verivox Geo API Suite" verbose="1" configfailurepolicy="continue">
+<suite name="Geo API Suite" verbose="1" configfailurepolicy="continue">
     <test name="City and Street Tests" enabled="true">
         <classes>
             <class name="com.itkhanz.tests.CitiesTest">
