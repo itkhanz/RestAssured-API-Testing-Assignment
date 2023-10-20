@@ -1,6 +1,6 @@
 package com.itkhanz.specs;
 
-import com.itkhanz.constants.City;
+import com.itkhanz.constants.enums.City;
 import com.itkhanz.constants.Route;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;

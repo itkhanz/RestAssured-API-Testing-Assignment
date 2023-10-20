@@ -1,4 +1,4 @@
-package com.itkhanz.constants;
+package com.itkhanz.constants.enums;
 
 public enum City {
     BERLIN("10409"),
