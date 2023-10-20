@@ -9,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 
 import static io.restassured.RestAssured.given;
 
+/**
+ * Stores the APIs calls for Getting the City based on Postcode
+ */
 public class CitiesApi {
     private static final Logger logger = LogManager.getLogger(CitiesApi.class);
     @Step

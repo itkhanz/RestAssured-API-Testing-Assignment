@@ -12,6 +12,11 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+/**
+ * Utility class to store all the reusable assertions for API Tests validation
+ * These assertions are called from these methods with @Step annotation
+ * Methods annotated with allure @Step annotation are displayed as separate test step in allure report
+ */
 public class AssertionUtils {
     private static final Logger logger = LogManager.getLogger(AssertionUtils.class);
 

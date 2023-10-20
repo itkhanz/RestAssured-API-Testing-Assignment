@@ -10,6 +10,9 @@ import org.apache.logging.log4j.Logger;
 
 import static io.restassured.RestAssured.given;
 
+/**
+ * Stores the APIs calls for Getting the Street based on City and Postcode
+ */
 public class StreetsApi {
     private static final Logger logger = LogManager.getLogger(StreetsApi.class);
 

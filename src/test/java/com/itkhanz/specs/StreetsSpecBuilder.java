@@ -14,6 +14,11 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.isA;
 
+/**
+ * Abstracts the common request and response specifications for Streets API
+ * These SpecBuilder helps to reuse same specs across multiple API calls
+ * It helps to place the common configuration and validation for API calls under one place
+ */
 public class StreetsSpecBuilder {
     public static RequestSpecification getRequestSpec() {
         return new RequestSpecBuilder()

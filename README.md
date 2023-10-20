@@ -128,7 +128,7 @@ mvn clean test
   brew install allure
   ```
     * Install via Scoop (for Windows)
-        * Make sure [Scoop](Make sure Scoop is installed.) is installed.
+        * Make sure [Scoop](https://scoop.sh/) is installed.
   ```shell
   scoop install allure
   ```

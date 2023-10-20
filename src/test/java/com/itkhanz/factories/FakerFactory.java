@@ -2,6 +2,11 @@ package com.itkhanz.factories;
 
 import com.github.javafaker.Faker;
 
+/**
+ * Utility class that generates Fake test data for use in tests
+ * It uses javafaker library and contains helpful utility methods to generate common test data
+ * It uses singleton pattern to create a single instance of Faker
+ */
 public class FakerFactory {
     private static Faker faker;
     private static FakerFactory fakerFactory;

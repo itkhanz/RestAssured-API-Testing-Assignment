@@ -7,6 +7,11 @@ import org.testng.annotations.DataProvider;
 
 import java.util.List;
 
+/**
+ * This class provides the data for data-driven TestNG tests
+ * These data-providers are then used together with Tests to run tests multiple times with different set of data
+ * Test data is read from JSON and transformed to Object[][] to be used with TestNG dataProvider
+ */
 public class TestDataLoader {
 
     @DataProvider(name = "citiesData")
