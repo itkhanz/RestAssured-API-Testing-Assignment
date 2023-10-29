@@ -1,5 +1,7 @@
 # API Testing with REST Assured and Java
 
+[![API Tests](https://github.com/itkhanz/RestAssured-API-Testing-Assignment/actions/workflows/test-execution.yml/badge.svg)](https://github.com/itkhanz/RestAssured-API-Testing-Assignment/actions/workflows/test-execution.yml)
+
 * This project is a solution for the API Testing assignment and automates API endpoints to validate the
   response.
 * It uses data-driven testing to derive parameterized tests from JSON test data for both the test scenarios.
