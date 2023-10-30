@@ -14,10 +14,10 @@ This project is built and tested with the following dependencies:
 * JAVA JDK 17+ installed and JAVA_HOME set as environment variable
 * MAVEN 3.9.2+ installed and MAVEN_HOME set as environment variable
 
-## Libraries
+## Tech Stack
 
 * [Java 17](https://openjdk.org/projects/jdk/17/) as programming language
-* [REST Assured](https://rest-assured.io/) as native app automation library
+* [REST Assured](https://rest-assured.io/) Java DSL for easy testing of REST services
 * [TestNG](https://mvnrepository.com/artifact/org.testng/testng/7.8.0) as testing framework to support the test creation
   and hooks
 * [java-faker](https://github.com/DiUS/java-faker) as the faker data generation strategy
