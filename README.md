@@ -29,6 +29,8 @@ This project is built and tested with the following dependencies:
   adapter for allure reporting
 * [Allure rest-assured](https://mvnrepository.com/artifact/io.qameta.allure/allure-rest-assured) Filter for rest-assured
   http client, that generates attachment for allure.
+* [GitHub Actions](https://docs.github.com/en/actions) for running tests via Continuous Integration (CI)
+* [GitHub Pages](https://github.com/marketplace/actions/allure-report-with-history) for publishing the allure report via CI
 
 ## Project Structure
 
@@ -88,11 +90,12 @@ This project is built and tested with the following dependencies:
 ## Test Scenarios
 
 ### User story A – Address checks
-**AS**              A backend developer
 
-**I WANT TO**       find city and street names for a particular German postcode
+AS             A backend developer
 
-**SO THAT**         I can help customers select their address details more easily
+I WANT TO       find city and street names for a particular German postcode
+
+SO THAT         I can help customers select their address details more easily
 
 ### Scenario 1: Find the cities for a given postcode
 
@@ -148,3 +151,13 @@ mvn clean test
 > Before executing the tests again, stop the allure pressing Ctrl + c.
 
 <img src="doc/allure-behaviors.PNG" alt="allure report">
+
+## Continuous Integration CI with GitHub Actions
+
+* This project has a GitHub
+  Action [workflow](https://github.com/itkhanz/RestAssured-API-Testing-Assignment/blob/main/.github/workflows/test-execution.yml)
+  that triggers REST Assured API tests on each push or pull request to the main branch on Ubuntu VM.
+* It caches the maven dependencies to save the build and run time.
+* It then uploads the allure-results as test artifact and publishes the allure report to GitHub Pages.
+* Published allure report can be found on GitHub Pages site: https://itkhanz.github.io/RestAssured-API-Testing-Assignment/
+
