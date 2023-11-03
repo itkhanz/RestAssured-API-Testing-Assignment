@@ -11,7 +11,7 @@
 * Right-click on the src folder, and select `Reformat Code`
 * In the right side, choose Maven -> Plugins -> checksyle -> checkstyle:check to run the checkstyle validation
 * Alternatively you can run the command in terminal `mvn checkstyle:check` or `mvn validate`
-* 
+* [checkstyle.yml GitHub action](./../.github/workflows/checkstyle.yml) workflow is setup to trigger validate on each pull request
 
 ## Resources
 

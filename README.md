@@ -31,6 +31,7 @@ This project is built and tested with the following dependencies:
   http client, that generates attachment for allure.
 * [GitHub Actions](https://docs.github.com/en/actions) for running tests via Continuous Integration (CI)
 * [GitHub Pages](https://github.com/marketplace/actions/allure-report-with-history) for publishing the allure report via CI
+* [Checkstyle] (https://checkstyle.sourceforge.io/index.html) to adhere  to coding standards for Java
 
 ## Project Structure
 
