@@ -16,6 +16,7 @@
     <maven.compiler.target>17</maven.compiler.target>
     <suite-xml>src/test/resources/test-suites/testng.xml</suite-xml>
     <aspectj.version>1.9.19</aspectj.version>
+    <checkstyle-maven-plugin.version>3.3.1</checkstyle-maven-plugin.version>
   </properties>
 
   <build>
@@ -39,6 +40,29 @@
               <version>${aspectj.version}</version>
             </dependency>
           </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${checkstyle-maven-plugin.version}</version>
+          <configuration>
+            <consoleOutput>true</consoleOutput>
+            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+            <failOnViolation>true</failOnViolation>
+            <failsOnError>true</failsOnError>
+            <configLocation>config/checkstyle/checkstyle.xml</configLocation>
+            <suppressionsLocation>config/checkstyle/suppressions.xml</suppressionsLocation>
+            <suppressionsFileExpression>config/checkstyle/suppressions.xml</suppressionsFileExpression>
+          </configuration>
+          <executions>
+            <execution>
+              <id>validate</id>
+              <phase>validate</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
   </build>

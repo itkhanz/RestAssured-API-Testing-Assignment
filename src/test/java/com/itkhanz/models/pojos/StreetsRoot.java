@@ -12,9 +12,9 @@ POJO for streets.json
 @Data
 @NoArgsConstructor
 public class StreetsRoot {
-    @JsonProperty("Code")
-    private String code;
+  @JsonProperty("Code")
+  private String code;
 
-    @JsonProperty("Cities")
-    private List<CityStreets> cityStreets;
+  @JsonProperty("Cities")
+  private List<CityStreets> cityStreets;
 }

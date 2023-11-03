@@ -12,9 +12,9 @@ POJO for nested map inside parent StreetsRoot containing city name and its list 
 @Data
 @NoArgsConstructor
 public class CityStreets {
-    @JsonProperty("City")
-    private String city;
+  @JsonProperty("City")
+  private String city;
 
-    @JsonProperty("Streets")
-    private List<String> streets;
+  @JsonProperty("Streets")
+  private List<String> streets;
 }

@@ -13,31 +13,30 @@ import static io.restassured.RestAssured.given;
  * Stores the APIs calls for Getting the City based on Postcode
  */
 public class CitiesApi {
-    private static final Logger logger = LogManager.getLogger(CitiesApi.class);
-    @Step
-    public static Response getCitiesForPostCode(String postalCode) {
-        logger.info("Making GET call to Cities Api with postcode {}", postalCode);
+  private static final Logger logger = LogManager.getLogger(CitiesApi.class);
 
-        return given(CitiesSpecBuilder.getRequestSpec())
-                .when()
-                    .get("/" + postalCode)
-                .then()
-                    .spec(CitiesSpecBuilder.getResponseSpec())
-                    .extract().response()
-                ;
-    }
+  @Step
+  public static Response getCitiesForPostCode(String postalCode) {
+    logger.info("Making GET call to Cities Api with postcode {}", postalCode);
 
-    @Step
-    public static Response getCitiesForInvalidPostCode() {
-        logger.info("Making GET call to Cities Api with postcode {}", Globals.INVALID_POSTAL_CODE);
+    return given(CitiesSpecBuilder.getRequestSpec())
+      .when()
+      .get("/" + postalCode)
+      .then()
+      .spec(CitiesSpecBuilder.getResponseSpec())
+      .extract().response();
+  }
 
-        return given(CitiesSpecBuilder.getRequestSpec())
-                .when()
-                    .get("/" + Globals.INVALID_POSTAL_CODE)
-                .then()
-                    .spec(CitiesSpecBuilder.getInvalidPostCodeResponseSpec())
-                    .extract().response()
-                ;
-    }
+  @Step
+  public static Response getCitiesForInvalidPostCode() {
+    logger.info("Making GET call to Cities Api with postcode {}", Globals.INVALID_POSTAL_CODE);
+
+    return given(CitiesSpecBuilder.getRequestSpec())
+      .when()
+      .get("/" + Globals.INVALID_POSTAL_CODE)
+      .then()
+      .spec(CitiesSpecBuilder.getInvalidPostCodeResponseSpec())
+      .extract().response();
+  }
 
 }

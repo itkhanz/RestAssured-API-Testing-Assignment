@@ -7,7 +7,7 @@ import org.aeonbits.owner.ConfigCache;
  * You can create multiple methods inside to create separate Properties Objects for different properties files
  */
 public class ConfigFactory {
-    public static GeneralConfig getGeneralConfig() {
-        return ConfigCache.getOrCreate(GeneralConfig.class);
-    }
+  public static GeneralConfig getGeneralConfig() {
+    return ConfigCache.getOrCreate(GeneralConfig.class);
+  }
 }

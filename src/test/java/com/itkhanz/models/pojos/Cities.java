@@ -13,10 +13,10 @@ POJO for cities.json
 @NoArgsConstructor
 public class Cities {
 
-    @JsonProperty("Code")
-    private String code;
+  @JsonProperty("Code")
+  private String code;
 
-    @JsonProperty("Cities")
-    private List<String> cities;
+  @JsonProperty("Cities")
+  private List<String> cities;
 
 }

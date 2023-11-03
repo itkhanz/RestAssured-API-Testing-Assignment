@@ -21,34 +21,31 @@ import static org.hamcrest.Matchers.isA;
  */
 public class CitiesSpecBuilder {
 
-    public static RequestSpecification getRequestSpec() {
-        return new RequestSpecBuilder()
-                .setBaseUri(Route.BASE_URI)
-                .setBasePath(Route.BASE_PATH)
-                .addFilter(new AllureRestAssured())
-                .log(LogDetail.ALL)
-                .build()
-                ;
-    }
+  public static RequestSpecification getRequestSpec() {
+    return new RequestSpecBuilder()
+      .setBaseUri(Route.BASE_URI)
+      .setBasePath(Route.BASE_PATH)
+      .addFilter(new AllureRestAssured())
+      .log(LogDetail.ALL)
+      .build();
+  }
 
-    public static ResponseSpecification getResponseSpec() {
-        return new ResponseSpecBuilder()
-                //.expectStatusCode(200)
-                .expectContentType(ContentType.JSON)
-                .expectBody("Cities", isA(List.class))
-                .log(LogDetail.ALL)
-                .build()
-                ;
-    }
+  public static ResponseSpecification getResponseSpec() {
+    return new ResponseSpecBuilder()
+      //.expectStatusCode(200)
+      .expectContentType(ContentType.JSON)
+      .expectBody("Cities", isA(List.class))
+      .log(LogDetail.ALL)
+      .build();
+  }
 
-    public static ResponseSpecification getInvalidPostCodeResponseSpec() {
-        return new ResponseSpecBuilder()
-                //.expectStatusCode(404)
-                .expectBody(Matchers.blankOrNullString())
-                .log(LogDetail.ALL)
-                .build()
-                ;
-    }
+  public static ResponseSpecification getInvalidPostCodeResponseSpec() {
+    return new ResponseSpecBuilder()
+      //.expectStatusCode(404)
+      .expectBody(Matchers.blankOrNullString())
+      .log(LogDetail.ALL)
+      .build();
+  }
 
 
 }

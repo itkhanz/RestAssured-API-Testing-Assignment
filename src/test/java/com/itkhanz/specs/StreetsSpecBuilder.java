@@ -1,7 +1,7 @@
 package com.itkhanz.specs;
 
-import com.itkhanz.constants.enums.City;
 import com.itkhanz.constants.Route;
+import com.itkhanz.constants.enums.City;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -20,35 +20,32 @@ import static org.hamcrest.Matchers.isA;
  * It helps to place the common configuration and validation for API calls under one place
  */
 public class StreetsSpecBuilder {
-    public static RequestSpecification getRequestSpec() {
-        return new RequestSpecBuilder()
-                .setBaseUri(Route.BASE_URI)
-                .setBasePath(Route.BASE_PATH)
-                .addFilter(new AllureRestAssured())
-                .log(LogDetail.ALL)
-                .build()
-                ;
-    }
+  public static RequestSpecification getRequestSpec() {
+    return new RequestSpecBuilder()
+      .setBaseUri(Route.BASE_URI)
+      .setBasePath(Route.BASE_PATH)
+      .addFilter(new AllureRestAssured())
+      .log(LogDetail.ALL)
+      .build();
+  }
 
-    public static ResponseSpecification getResponseSpec() {
-        return new ResponseSpecBuilder()
-                .expectStatusCode(200)
-                .expectContentType(ContentType.JSON)
-                .expectBody("Streets", isA(List.class))
-                .log(LogDetail.ALL)
-                .build()
-                ;
-    }
+  public static ResponseSpecification getResponseSpec() {
+    return new ResponseSpecBuilder()
+      .expectStatusCode(200)
+      .expectContentType(ContentType.JSON)
+      .expectBody("Streets", isA(List.class))
+      .log(LogDetail.ALL)
+      .build();
+  }
 
-    public static RequestSpecification getRequestSpecForBerlin() {
-        return new RequestSpecBuilder()
-                .setBaseUri(Route.BASE_URI)
-                .setBasePath(Route.BASE_PATH)
-                .addPathParam("code", City.BERLIN.getPostalCode())
-                .addPathParam("city", City.BERLIN.name().toLowerCase())
-                .addFilter(new AllureRestAssured())
-                .log(LogDetail.ALL)
-                .build()
-                ;
-    }
+  public static RequestSpecification getRequestSpecForBerlin() {
+    return new RequestSpecBuilder()
+      .setBaseUri(Route.BASE_URI)
+      .setBasePath(Route.BASE_PATH)
+      .addPathParam("code", City.BERLIN.getPostalCode())
+      .addPathParam("city", City.BERLIN.name().toLowerCase())
+      .addFilter(new AllureRestAssured())
+      .log(LogDetail.ALL)
+      .build();
+  }
 }
