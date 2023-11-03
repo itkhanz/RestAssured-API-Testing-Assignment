@@ -1,0 +1,26 @@
+name: Checkstyle formatting and coding standards
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: run-checkstyle-check
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: 17
+
+      - name: Run checkstyle check
+        run: mvn validate
